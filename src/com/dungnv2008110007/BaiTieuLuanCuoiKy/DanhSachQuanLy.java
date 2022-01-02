@@ -136,12 +136,13 @@ public class DanhSachQuanLy {
         String tenHH, ngayNK;
         double giaNhap;
         int soLuongTonKho;
-        System.out.println("(Ma hang hoa: ma hang hoa - loai hang hoa)\n(Vi du: 789-HTP)");
+        int dem = 0;
         System.out.print("Nhap ma hang hoa cua loai hang ma ban muon sua: ");
         String maHH = scanner.nextLine();
         for(int i = 0; i < list.size(); i++){
             HangHoa h = list.get(i);
             if(h.getMaHangHoa().equals(maHH)){
+                dem++;
                 if(h instanceof HangThucPham){
                     String[] maH = maHH.split("-",2);
                     System.out.println("\n(((NHAP THONG TIN HANG THUC PHAM)))");
@@ -156,7 +157,7 @@ public class DanhSachQuanLy {
                     ngayNK = scanner.nextLine();
                     System.out.print("Nhap ngay het han: ");
                     String ngayHH = scanner.nextLine();
-                    HangHoa a = new HangThucPham( tenHH, maH[1], giaNhap, soLuongTonKho, ngayNK, ngayHH);
+                    HangHoa a = new HangThucPham( tenHH, maH[0], giaNhap, soLuongTonKho, ngayNK, ngayHH);
                     list.add(list.indexOf(h),a);
                     list.remove(h);
                 }
@@ -174,7 +175,7 @@ public class DanhSachQuanLy {
                     ngayNK = scanner.nextLine();
                     System.out.print("Nhap xuat xu: ");
                     String xuatXu = scanner.nextLine();
-                    HangHoa a = new HangSanhSu(tenHH, maH[1], giaNhap, soLuongTonKho, ngayNK, xuatXu);
+                    HangHoa a = new HangSanhSu(tenHH, maH[0], giaNhap, soLuongTonKho, ngayNK, xuatXu);
                     list.add(list.indexOf(h),a);
                     list.remove(h);
                 }
@@ -192,33 +193,40 @@ public class DanhSachQuanLy {
                     ngayNK = scanner.nextLine();
                     System.out.print("Nhap cong suat cua thiet bi: ");
                     int congSuat = scanner.nextInt();
-                    HangHoa a = new HangDienMay(tenHH, maH[1], giaNhap, soLuongTonKho, ngayNK, congSuat) ;
+                    HangHoa a = new HangDienMay(tenHH, maH[0], giaNhap, soLuongTonKho, ngayNK, congSuat) ;
                     list.add(list.indexOf(h),a);
                     list.remove(h);
                 }
             }
         }
+        if(dem == 0)
+            System.out.println("Khong tim thay hang hoa co ma nay. Vui long nhap lai !!!");
     }
     //chức năng xóa hàng hóa theo mã của 1 hàng hóa bất kỳ 
     public void xoaHangHoa(){
+        int dem = 0;
         System.out.print("Nhap ma hang hoa can xoa: ");
 		String ma = scanner.nextLine();
 		for(int i = 0; i < list.size(); i++){
             HangHoa h = list.get(i);
             if(h.getMaHangHoa().equals(ma)){
+                dem++;
                 list.remove(h);
+                System.out.println("Da xoa thanh cong !!!");
             }
         }
+        if(dem == 0)
+            System.out.println("Khong tim thay hang hoa co ma nay. Vui long nhap lai !!!");
     }
     // xuất từng loại hàng hóa
     public void xuatHangThucPham(){
         System.out.println("(HANG THUC PHAM):");
-		for (int i = 0; i < 140; i++) {
+		for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
 		System.out.println();
         System.out.printf("|%-25s|%-8s|%-15s|%-8s|%-15s|%-15s|%-15s|\n","Ten Hang Hoa","Ma hang","Gia Nhap","So Luong","Ngay Nhap Kho","Ngay het han","Tong gia tri");
-        for (int i = 0; i < 140; i++) {
+        for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
         System.out.println();
@@ -227,7 +235,7 @@ public class DanhSachQuanLy {
                 System.out.println(hangHoa);
             }
         }
-        for (int i = 0; i < 140; i++) {
+        for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
         System.out.println();
@@ -235,12 +243,12 @@ public class DanhSachQuanLy {
     }
     public void xuatHangSanhSu(){
         System.out.println("(HANG SANH SU):");
-		for (int i = 0; i < 140; i++) {
+		for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
 		System.out.println();
         System.out.printf("|%-25s|%-8s|%-15s|%-8s|%-15s|%-15s|%-15s|\n","Ten Hang Hoa","Ma hang","Gia Nhap","So Luong","Ngay Nhap Kho","Xuat Xu","Tong gia tri");
-        for (int i = 0; i < 140; i++) {
+        for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
         System.out.println();
@@ -249,19 +257,19 @@ public class DanhSachQuanLy {
                 System.out.println(hangHoa);
             }
         }
-        for (int i = 0; i < 140; i++) {
+        for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
         System.out.println();
     }
     public void xuatHangDienMay(){
         System.out.println("(HANG DIEN MAY):");
-		for (int i = 0; i < 140; i++) {
+		for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
 		System.out.println();
         System.out.printf("|%-25s|%-8s|%-15s|%-8s|%-15s|%-15s|%-15s|\n","Ten Hang Hoa","Ma hang","Gia Nhap","So Luong","Ngay Nhap Kho","Cong Suat","Tong gia tri");
-        for (int i = 0; i < 140; i++) {
+        for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
         System.out.println();
@@ -270,75 +278,75 @@ public class DanhSachQuanLy {
                 System.out.println(hangHoa);
             }
         }
-        for (int i = 0; i < 140; i++) {
+        for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
         System.out.println();
     }
     public void xuatMotHangThucPham(HangHoa h){
-		for (int i = 0; i < 140; i++) {
+		for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
 		System.out.println();
         System.out.printf("|%-25s|%-8s|%-15s|%-8s|%-15s|%-15s|%-15s|\n","Ten Hang Hoa","Ma hang","Gia Nhap","So Luong","Ngay Nhap Kho","Ngay het han","Tong gia tri");
-        for (int i = 0; i < 140; i++) {
+        for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
         System.out.println();
         System.out.println(h);
-        for (int i = 0; i < 140; i++) {
+        for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
         System.out.println();
 
     }
     public void xuatMotHangSanhSu(HangHoa h){
-		for (int i =0; i < 140; i++) {
+		for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
 		System.out.println();
         System.out.printf("|%-25s|%-8s|%-15s|%-8s|%-15s|%-15s|%-15s|\n","Ten Hang Hoa","Ma hang","Gia Nhap","So Luong","Ngay Nhap Kho","Xuat Xu","Tong gia tri");
-        for (int i = 0; i < 140; i++) {
+        for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
         System.out.println();
         System.out.println(h);
-        for (int i = 0; i < 140; i++) {
+        for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
         System.out.println();
     }
     public void xuatMotHangDienMay(HangHoa h){
-		for (int i = 0; i < 140; i++) {
+		for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
 		System.out.println();
         System.out.printf("|%-25s|%-8s|%-15s|%-8s|%-15s|%-15s|%-15s|\n","Ten Hang Hoa","Ma hang","Gia Nhap","So Luong","Ngay Nhap Kho","Cong Suat","Tong gia tri");
-        for (int i = 0; i < 140; i++) {
+        for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
         System.out.println();
         System.out.println(h);
-        for (int i = 0; i < 140; i++) {
+        for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
         System.out.println();
     }
     public void xuatListHangThucPham(ArrayList<HangHoa> l){
         System.out.println("(HANG THUC PHAM):");
-		for (int i = 0; i < 140; i++) {
+		for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
 		System.out.println();
         System.out.printf("|%-25s|%-8s|%-15s|%-8s|%-15s|%-15s|%-15s|\n","Ten Hang Hoa","Ma hang","Gia Nhap","So Luong","Ngay Nhap Kho","Ngay het han","Tong gia tri");
-        for (int i = 0; i < 140; i++) {
+        for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
         System.out.println();
         for (HangHoa hangHoa : l) {
             System.out.println(hangHoa);
         }
-        for (int i = 0; i < 140; i++) {
+        for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
         System.out.println();
@@ -346,19 +354,19 @@ public class DanhSachQuanLy {
     }
     public void xuatListHangSanhSu(ArrayList<HangHoa> l){
         System.out.println("(HANG SANH SU):");
-		for (int i = 0; i < 140; i++) {
+		for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
 		System.out.println();
         System.out.printf("|%-25s|%-8s|%-15s|%-8s|%-15s|%-15s|%-15s|\n","Ten Hang Hoa","Ma hang","Gia Nhap","So Luong","Ngay Nhap Kho","Xuat Xu","Tong gia tri");
-        for (int i = 0; i < 140; i++) {
+        for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
         System.out.println();
         for (HangHoa hangHoa : l) {
             System.out.println(hangHoa);
         }
-        for (int i = 0; i < 140; i++) {
+        for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
         System.out.println();
@@ -366,19 +374,19 @@ public class DanhSachQuanLy {
     }
     public void xuatListHangDienMay(ArrayList<HangHoa> l){
         System.out.println("(HANG DIEN MAY):");
-		for (int i = 0; i < 140; i++) {
+		for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
 		System.out.println();
         System.out.printf("|%-25s|%-8s|%-15s|%-8s|%-15s|%-15s|%-15s|\n","Ten Hang Hoa","Ma hang","Gia Nhap","So Luong","Ngay Nhap Kho","Cong Suat","Tong gia tri");
-        for (int i = 0; i < 140; i++) {
+        for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
         System.out.println();
         for (HangHoa hangHoa : l) {
             System.out.println(hangHoa);
         }
-        for (int i = 0; i < 140; i++) {
+        for (int i = 0; i < 109; i++) {
 			System.out.print("-");
 		}
         System.out.println();
@@ -755,7 +763,7 @@ public class DanhSachQuanLy {
             System.out.println("2.Hang sanh su.");
             System.out.println("3.Hang dien may.");
 		    System.out.println("0.Quay lai.");
-            System.out.println("======END=======");
+            System.out.println("======END========");
             System.out.print("Nhap lua chon cua ban: ");
 		    luaChon = scanner.nextInt();
 		    switch(luaChon){
@@ -774,14 +782,17 @@ public class DanhSachQuanLy {
 		} while (luaChon != 0);
     }
     public void timKiemTheoNgay() throws ParseException{
+        int dem = 0;
         System.out.println("Nhap khoang thoi gian can tim kiem tu ngay: ");
+        //scanner.nextLine();
 		String ngayDau = scanner.nextLine();
 		System.out.println("den ngay:");
 		String ngayCuoi = scanner.nextLine();
-		System.out.println("Cac mat hang da duoc nhap kho tu ngay " + ngayDau +" den ngay " + ngayCuoi + " la:");
         for(int i = 0; i < list.size(); i++){
             HangHoa h = list.get(i);
             if(h.getNgayNhapKho().compareTo(doiChuoiThanhNgay(ngayDau)) >= 0 && h.getNgayNhapKho().compareTo(doiChuoiThanhNgay(ngayCuoi)) <= 0){
+                System.out.println("Cac mat hang da duoc nhap kho tu ngay " + ngayDau +" den ngay " + ngayCuoi + " la:");
+                dem++;
                 if(h instanceof HangThucPham){
                     xuatMotHangThucPham(h);
                 }
@@ -793,8 +804,11 @@ public class DanhSachQuanLy {
                 }
             }
         }
+        if(dem == 0)
+            System.out.println("Khong hop le. Vui long nhap lai !!!");
     }
     public void timKiemTheoGia(){
+        int dem = 0;
         System.out.println("Nhap khoang gia can tim kiem tu: ");
 		double giaDau = scanner.nextDouble();
 		System.out.println("den: ");
@@ -802,6 +816,7 @@ public class DanhSachQuanLy {
         for(int i = 0; i < list.size(); i++){
             HangHoa h = list.get(i);
             if(h.getGiaNhap() >= giaDau && h.getGiaNhap() <= giaCuoi){
+                dem++;
                 if(h instanceof HangThucPham){
                     xuatMotHangThucPham(h);
                 }
@@ -813,6 +828,8 @@ public class DanhSachQuanLy {
                 }
             }
         }
+        if(dem == 0)
+            System.out.println("Khong hop le. Vui long nhap lai !!!");
     }
     public void timKiemHangGiaTriCao(){
         HangHoa h = list.get(0);
@@ -858,20 +875,102 @@ public class DanhSachQuanLy {
         }
 		sapXepTangDanTheoLoaiVaTheoGia();
         System.out.println("\nBANG THONG KE:");
-        for (int i = 0; i < 140; i++) {
+        for (int i = 0; i < 120; i++) {
 			System.out.print("-");
 		}
 		System.out.println();
         System.out.printf("|%-20s|  %d  |\n","Tong so luong",tongSoLuong);
-        for (int i =0 ; i < 140; i++) {
+        for (int i =0 ; i < 120; i++) {
 			System.out.print("-");
 		}
 		System.out.println();
         System.out.printf("|%-20s|  %-20s|\n","Tong chi phi",decimalFormat.format(tongChiPhi));
-        for (int i = 0; i < 140; i++) {
+        for (int i = 0; i < 120; i++) {
 			System.out.print("-");
 		}
 		System.out.println();
+    }
+    public void thongKeTheoLoaiHangHoa(){
+        double tongHTP = 0, tongHSS = 0, tongHDM = 0;
+        int tongSoHTP = 0, tongSoHSS = 0, tongSoHDM = 0;
+        for(int i = 0 ; i < list.size() ; i++){
+            HangHoa h = list.get(i);
+            if(h instanceof HangThucPham){
+                tongHTP += h.tinhTien();
+                tongSoHTP += h.getSoLuongTonKho();
+            }
+            else if(h instanceof HangSanhSu){
+                tongHSS += h.tinhTien();
+                tongSoHSS += h.getSoLuongTonKho();
+            }
+            else if(h instanceof HangDienMay){
+                tongHDM += h.tinhTien();
+                tongSoHDM += h.getSoLuongTonKho();
+            }
+        }
+        int luaChon;
+        do{
+            System.out.println("======MENU=======");
+            System.out.println("1.Hang thuc pham.");
+            System.out.println("2.Hang sanh su.");
+            System.out.println("3.Hang dien may.");
+		    System.out.println("0.Quay lai.");
+            System.out.println("======END========");
+            System.out.print("Nhap lua chon cua ban: ");
+		    luaChon = scanner.nextInt();
+            switch(luaChon){
+                case 1: xuatHangThucPham();
+                        for (int i = 0; i < 120; i++) {
+                            System.out.print("-");
+                        }
+                        System.out.println();
+                        System.out.printf("|%-20s|  %d  |\n","Tong so luong",tongSoHTP);
+                        for (int i = 0; i < 120; i++) {
+                            System.out.print("-");
+                        }
+                        System.out.println();
+                        System.out.printf("|%-20s|  %-20s|\n","Tong chi phi",decimalFormat.format(tongHTP));
+                        for (int i = 0; i < 120; i++) {
+                            System.out.print("-");
+                        }
+                        System.out.println();
+                        break;           
+                case 2: xuatHangSanhSu();
+                        for (int i = 0; i < 120; i++) {
+                            System.out.print("-");
+                        }
+                        System.out.println();
+                        System.out.printf("|%-20s|  %d  |\n","Tong so luong",tongSoHSS);
+                        for (int i = 0; i < 120; i++) {
+                            System.out.print("-");
+                        }
+                        System.out.println();
+                        System.out.printf("|%-20s|  %-20s|\n","Tong chi phi",decimalFormat.format(tongHSS));
+                        for (int i = 0; i < 120; i++) {
+                            System.out.print("-");
+                        }
+                        System.out.println();
+                        break;          
+                case 3: xuatHangDienMay();
+                        for (int i = 0; i < 120; i++) {
+                            System.out.print("-");
+                        }
+                        System.out.println();
+                        System.out.printf("|%-20s|  %d  |\n","Tong so luong",tongSoHDM);
+                        for (int i = 0; i < 120; i++) {
+                            System.out.print("-");
+                        }
+                        System.out.println();
+                        System.out.printf("|%-20s|  %-20s|\n","Tong chi phi",decimalFormat.format(tongHDM));
+                        for (int i = 0; i < 120; i++) {
+                            System.out.print("-");
+                        }
+                        System.out.println();
+                        break;
+                case 0: System.out.println("Quay lại."); break;  
+                default: System.out.println("Khong hop le. Vui long nhap lai !!!");
+            }       
+        }while(luaChon != 0);
     }
     public static Date doiChuoiThanhNgay(String chuoiNgay) throws ParseException{
         /*
